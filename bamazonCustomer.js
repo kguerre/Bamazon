@@ -45,38 +45,41 @@ var buyItem = function() {
     type: "input",
     message: "How many units would you like to purchase?"
   }]).then(function(answer) {
-    connection.query("SELECT" + answer.itemID + "from products", function(err,res) {
-        for (var i = 0; i < res[i].length; i++) {
-            console.log(answer);
-            console.log(res[i].item_id);
+    
+  connection.query("SELECT * FROM products", function(err, res) {
+    if (err) throw err;
+    
+        var chosenItem;
+        for (var i = 0; i < res.length; i++) {
+          if (res[i].item_id === parseInt(answer.itemId)) {
+            chosenItem = res[i];
+            //console.log(res[i].item_id);
+            //console.log(parseInt(answer.itemId));
+            //console.log("Chosen item is " + JSON.stringify(chosenItem));
+          }
         }
-    //     var inputId = answer.itemId;
-    //     var inputQuantity = answer.quantity;
-        
-    //     for (var j = 0; j < res[j].length; j++) {
 
-    //     if (answer.quantity > res[j].stock_quantity) {
-    //         console.log("We're sorry. We don't have enough in stock.")
-    //     } else {
-    //         var updateStock = function() {
-    //             connection.query(
-    //                 "UPDATE products SET ? WHERE ?",
-    //                 [
-    //                   {
-    //                     quantity: res[j].stock_quantity - answer.quantity
-    //                   },
-    //                   {
-    //                     itemId: answer.itemId
-    //                   }
-    //                 ],
-    //                 function(err, res) {
-    //                 console.log(res.affectedRows + " products updated!\n");
-    //                 }
-    //             );
-    //         }
-    //     }
-    //   }
-        
-    })
+        if (chosenItem.stock_quantity > parseInt(answer.quantity)) {
+          connection.query(
+            "UPDATE products SET ? WHERE ?",
+            [
+              {
+                stock_quantity: (chosenItem.stock_quantity - parseInt(answer.quantity))
+              },
+              {
+                item_id: chosenItem.item_id
+              }
+            ],
+            function(error) {
+              if (error) throw error;
+                console.log("Thank you for your business!");
+            }
+          );
+        }
+        else {
+          console.log("We're sorry. We don't have enough in stock.");
+        }
+      });
   });
 };
+
