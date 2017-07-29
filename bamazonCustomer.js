@@ -72,7 +72,7 @@ var buyItem = function() {
             ],
             function(error) {
               if (error) throw error;
-                console.log("Thank you for your business!");
+                console.log("Thank you for your business! Your total is " + parseInt(answer.quantity) * chosenItem.price);
             }
           );
         }
