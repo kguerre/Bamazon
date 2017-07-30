@@ -26,7 +26,8 @@ function showItems() {
             console.log("Item #: " + res[i].item_id + "|" + 
                         "Product: " + res[i].product_name + "|" + 
                         "Department: " + res[i].department_name + "|" + 
-                        "Price: " + "$" + res[i].price);
+                        "Price: " + "$" + res[i].price + "|" +
+                        "In Stock: " + res[i].stock_quantity);
             console.log("--------------------------------------------------------------------------------");
         }
         buyItem();
