@@ -16,5 +16,5 @@ This application works by retrieving and updating data in MySQL.
 * If the quantity was not greater than the current stock, I needed to run a query, and use an UPDATE statment to change the stock quantity of the selected item in MySQL after a purchase was made. 
 * The total cost of the transaction was based on the price of the item stored in MySQL and the quantity from user input. 
 
-![Demo](/demo/Bamazon_HW.mov)
+![Demo](https://github.com/kguerre/Bamazon/files/1185932/Bamazon_HW.zip)
 
