@@ -1,5 +1,4 @@
 # Bamazon
-Homework 12
 
 ## Overview
 
